@@ -1,3 +1,8 @@
+### Session4-链式调用-resolvePromise
+
+源代码
+
+```javascript
 const PENDING = 'pending',
 	RESOLVED = 'resolved',
 	REJECTED = 'rejected'
@@ -173,3 +178,5 @@ Promise.defer = Promise.deferred = function(){
 }
 
 module.exports = Promise
+```
+
