@@ -7,3 +7,5 @@
 - [Session3-链式调用](./Session3-链式调用)
 
 - [Session4-链式调用-resolvePromise](./Session4-链式调用-resolvePromise)
+
+- [Session5-其他一些方法](./Session5-其他一些方法)

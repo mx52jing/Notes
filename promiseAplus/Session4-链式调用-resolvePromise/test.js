@@ -26,20 +26,32 @@ const Promise = require('./Promise')
 //     console.log(err);
 // })
 
-const p = new Promise((resolve, reject) => {
-	resolve(1)
-})
-
-const p2 = p.then(res => {
-	return new Promise((resolve, reject) => {
+// const p = new Promise((resolve, reject) => {
+// 	resolve(1)
+// })
+//
+// const p2 = p.then(res => {
+// 	return new Promise((resolve, reject) => {
+// 		resolve(new Promise((resolve, reject) => {
+// 			resolve(new Promise((resolve, reject) => {
+// 				resolve(res)
+// 			}))
+// 		}))
+// 	})
+// })
+//
+// p2.then(res => {
+// 	console.log(res)
+// })
+const p1 = new Promise((resolve, reject) => {
+	resolve(new Promise((resolve, reject) => {
 		resolve(new Promise((resolve, reject) => {
-			resolve(new Promise((resolve, reject) => {
-				resolve(res)
-			}))
+			resolve(2)
 		}))
-	})
+	}))
 })
-
-p2.then(res => {
-	console.log(res)
+p1.then(res => {
+	console.log(res, 'res')
+}, err => {
+	console.log(err, 'err')
 })

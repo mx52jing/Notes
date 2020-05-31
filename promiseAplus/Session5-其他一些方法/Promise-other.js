@@ -26,11 +26,11 @@ const resolvePromise = (promise2, x, resolve, reject) => {
 			const then = x.then
 			if (typeof then === 'function') {
 				then.call(x, y => {
-					if(called) return
+					if (called) return
 					called = true
 					resolvePromise(promise2, y, resolve, reject)
 				}, r => {
-					if(called) return
+					if (called) return
 					called = true
 					reject(r)
 				})
@@ -38,13 +38,22 @@ const resolvePromise = (promise2, x, resolve, reject) => {
 				resolve(x)
 			}
 		} catch (e) {
-			if(called) return
+			if (called) return
 			called = true
 			reject(e)
 		}
 	} else {
 		resolve(x)
 	}
+}
+
+const isPromise = value => {
+	if (value !== null && (typeof value === 'function' || typeof value === 'object')) {
+		if (typeof value.then === 'function') {
+			return true
+		}
+	}
+	return false
 }
 
 class Promise {
@@ -58,9 +67,6 @@ class Promise {
 		* 只有当状态为pending的时候才能够转换状态
 		*/
 		const resolve = value => {
-			if(value instanceof Promise) {
-				return value.then(resolve, reject)
-			}
 			if (this.status === PENDING) {
 				this.status = RESOLVED
 				this.value = value
@@ -164,15 +170,74 @@ class Promise {
 		})
 		return promise2
 	}
+
+	catch(errCallback) {
+		return this.then(null, errCallback)
+	}
+
+	static all(fns) {
+		return new Promise((resolve, reject) => {
+			if (!fns.length) {
+				return resolve([])
+			}
+			let result = [],
+				index = 0
+			const next = (res, i) => {
+				result[i] = res
+				if (++index === fns.length) {
+					resolve(result)
+				}
+			}
+			for (let i = 0; i < fns.length; i++) {
+				const fn = fns[i]
+				if (isPromise(fn)) {
+					fn.then(res => {
+						next(res, i)
+					}, reject)
+				} else {
+					next(fn, i)
+				}
+			}
+		})
+	}
 }
 
-Promise.defer = Promise.deferred = function(){
-	let dfd = {};
-	dfd.promise = new Promise((resolve,reject)=>{
-		dfd.resolve = resolve;
-		dfd.reject = reject;
+Promise.race = function(fns) {
+	return new Promise((resolve, reject) => {
+		if (!fns.length) {
+			return resolve([])
+		}
+		let result = []
+		const next = (res, i) => {
+			result.push(res)
+			if (!!fns.length) {
+				resolve(result)
+			}
+		}
+		for (let i = 0; i < fns.length; i++) {
+			const fn = fns[i]
+			if (isPromise(fn)) {
+				fn.then(res => {
+					next(res, i)
+				}, reject)
+			} else {
+				next(fn, i)
+			}
+		}
 	})
-	return dfd;
 }
+
+Promise.resolve = function(value) {
+	return new Promise((resolve, reject) => {
+		resolve(value)
+	})
+}
+
+Promise.reject = function(reason) {
+	return new Promise((resolve, reject) => {
+		reject(reason)
+	})
+}
+
 
 module.exports = Promise
