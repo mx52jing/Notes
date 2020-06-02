@@ -67,6 +67,9 @@ class Promise {
 		* 只有当状态为pending的时候才能够转换状态
 		*/
 		const resolve = value => {
+            if(value instanceof Promise) {
+                return value.then(resolve, reject)
+            }
 			if (this.status === PENDING) {
 				this.status = RESOLVED
 				this.value = value
@@ -174,7 +177,16 @@ class Promise {
 	catch(errCallback) {
 		return this.then(null, errCallback)
 	}
-
+	static resolve(value) {
+		return new Promise((resolve, reject) => {
+			resolve(value)
+		})
+	}
+	static reject(reason) {
+		return new Promise((resolve, reject) => {
+			reject(reason)
+		})
+	}
 	static all(fns) {
 		return new Promise((resolve, reject) => {
 			if (!fns.length) {
@@ -201,43 +213,5 @@ class Promise {
 		})
 	}
 }
-
-Promise.race = function(fns) {
-	return new Promise((resolve, reject) => {
-		if (!fns.length) {
-			return resolve([])
-		}
-		let result = []
-		const next = (res, i) => {
-			result.push(res)
-			if (!!fns.length) {
-				resolve(result)
-			}
-		}
-		for (let i = 0; i < fns.length; i++) {
-			const fn = fns[i]
-			if (isPromise(fn)) {
-				fn.then(res => {
-					next(res, i)
-				}, reject)
-			} else {
-				next(fn, i)
-			}
-		}
-	})
-}
-
-Promise.resolve = function(value) {
-	return new Promise((resolve, reject) => {
-		resolve(value)
-	})
-}
-
-Promise.reject = function(reason) {
-	return new Promise((resolve, reject) => {
-		reject(reason)
-	})
-}
-
 
 module.exports = Promise
