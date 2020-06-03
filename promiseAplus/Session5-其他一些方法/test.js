@@ -17,7 +17,7 @@ const Promise = require('./Promise-other')
 * 1 then er
 * r
 * */
-const f1 = () => (
+/*const f1 = () => (
 	new Promise((resolve, reject) => {
 		setTimeout(() => {
 			resolve('f1')
@@ -50,13 +50,35 @@ const f5 = () => (
 	})
 )
 
-Promise.all([f5(), f2(), f3(), f1(), 8, function(){}])
+Promise.race([f5(), f2(), f3(), f1(), 8, function(){}])
 .then(res => {
 	console.log(res, 'res');
 }, err => {
 	console.log(err, 'err');
-})
+})*/
 
 /*
 * 3秒后打印： [ 'f5', 'f2', 'f3', 'f1' ] res
 * */
+
+const p1 = new Promise((resolve, reject) => {
+    resolve(1)
+    // throw new Error('2222')
+})
+
+p1.then(res => {
+    console.log(res, 'res');
+    throw new Error('但是')
+    return 6
+}, err => {
+    console.log(err, 'err');
+    return 8
+}).finally(value => {
+    console.log(value, 'finally');
+}).then(res => {
+    console.log(res, '2res');
+}, err => {
+    console.log(err, '2err');
+}).finally(value => {
+    console.log(value, '2finally');
+})

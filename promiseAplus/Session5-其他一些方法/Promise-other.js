@@ -173,10 +173,16 @@ class Promise {
 		})
 		return promise2
 	}
-
 	catch(errCallback) {
 		return this.then(null, errCallback)
 	}
+
+    finally(cb) {
+		return this.then(
+			value => Promise.resolve(cb()).then(() => value),
+			reason => Promise.resolve(cb()).then(() => { throw reason })
+		)
+    }
 	static resolve(value) {
 		return new Promise((resolve, reject) => {
 			resolve(value)
@@ -208,6 +214,18 @@ class Promise {
 					}, reject)
 				} else {
 					next(fn, i)
+				}
+			}
+		})
+	}
+	static race(fns) {
+		return new Promise((resolve, reject) => {
+			for(let i = 0; i < fns.length; i++) {
+				const fn = fns[i]
+				if(isPromise(fn)) {
+					fn.then(resolve, reject)
+				}else {
+					resolve(fn)
 				}
 			}
 		})
