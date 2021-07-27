@@ -89,13 +89,13 @@ const opts = program.opts()
 
 console.log(opts);
 
-/**
- * node example2.js -p
- * { port: true }
- * node example2.js -l
- * { langOpt: true }
- * node example2.js -pl
- * { port: true, langOpt: true }
+/*
+  node example2.js -p
+  { port: true }
+  node example2.js -l
+  { langOpt: true }
+  node example2.js -pl
+  { port: true, langOpt: true }
  */
 ```
 2. 选项可设置参数
@@ -119,15 +119,15 @@ program
 const opts = program.opts()
 console.log(opts);
 
-/**
- * node example2.js
- * { port: 8000, optional: 'optional' }
- * node example2.js -p 9000
- * { port: 9000, optional: 'optional' }
- * node example2.js -m 1 2 3
- * { port: 8000, optional: 'optional', many: [ '1', '2', '3' ] }
- * node example2.js -m 1 2 -t 3
- * { port: 8000, optional: 'optional', many: [ '1', '2' ], tree: [ '3' ] }
+/*
+  node example2.js
+  { port: 8000, optional: 'optional' }
+  node example2.js -p 9000
+  { port: 9000, optional: 'optional' }
+  node example2.js -m 1 2 3
+  { port: 8000, optional: 'optional', many: [ '1', '2', '3' ] }
+  node example2.js -m 1 2 -t 3
+  { port: 8000, optional: 'optional', many: [ '1', '2' ], tree: [ '3' ] }
  * /
 ```
 
@@ -138,11 +138,11 @@ console.log(opts);
 `version`方法可以设置版本，其默认选项为`-V`和`--version`，设置了版本后，命令行会输出当前的版本号
 
 ```js
-/**
- * node example2.js -V
- * 0.0.1
- * node example2.js --version
- * 0.0.1
+/*
+  node example2.js -V
+  0.0.1
+  node example2.js --version
+  0.0.1
  * /
 ```
 
@@ -165,9 +165,9 @@ Option类，接受两个参数`(flags, description)`,`flags`和`description`对�
 ```js
 // 该选项默认值是'1'， 命令行传参数的时候，参数只能是'1', '2', '3'中的一个
  .addOption(new Option('-c, --choose <choose>', '选择').default('1').choices(['1', '2', '3'])) 
- /**
-  * node example2.js
-  * { port: 8000, optional: 'optional', choose: '1' }
+ /*
+   node example2.js
+   { port: 8000, optional: 'optional', choose: '1' }
   * /
 ```
 
@@ -197,15 +197,15 @@ program
     .option('-d, --decrease <decrease>', '减少数值', handleDecrease)
     .parse()
 
-/**
- * node example2.js -n 1 -n 2 -n 3
- * handleNum => 命令行传入的值是1，上个处理函数返回的值是undefined
- * handleNum => 命令行传入的值是2，上个处理函数返回的值是2
- * handleNum => 命令行传入的值是3，上个处理函数返回的值是3
- * node example2.js -a 2 -a 3 -a 5
- * handleAdd => 命令行传入的值是2，上个处理函数返回的值是undefined
- * handleAdd => 命令行传入的值是3，上个处理函数返回的值是2
- * handleAdd => 命令行传入的值是5，上个处理函数返回的值是5
+/*
+  node example2.js -n 1 -n 2 -n 3
+  handleNum => 命令行传入的值是1，上个处理函数返回的值是undefined
+  handleNum => 命令行传入的值是2，上个处理函数返回的值是2
+  handleNum => 命令行传入的值是3，上个处理函数返回的值是3
+  node example2.js -a 2 -a 3 -a 5
+  handleAdd => 命令行传入的值是2，上个处理函数返回的值是undefined
+  handleAdd => 命令行传入的值是3，上个处理函数返回的值是2
+  handleAdd => 命令行传入的值是5，上个处理函数返回的值是5
  */
 ```
 
@@ -247,11 +247,11 @@ program
     .action((actionName, opt, command) => {
         console.log(actionName, opt, command.name());
     })
-/**
- * node example3.js action 11 -p 9090
- * 11 { port: '9090' } action
- * node example3.js action 11 -p 8000 -d
- * 11 { port: '8000', debug: true } action
+/*
+  node example3.js action 11 -p 9090
+  11 { port: '9090' } action
+  node example3.js action 11 -p 8000 -d
+  11 { port: '8000', debug: true } action
  * /
 ```
 
@@ -276,17 +276,18 @@ program
 
 program.parse()
 
-/**
- * 我们执行 node example4.js create
- * 会去找和example4.js同级的example4-create.js，然后运行example4-create.js
- * 如果不想让它执行example4-create.js，可以自己指定一个文件，在command()第三个参数传入 { executableFile: '你想要的名字' }，别忘记创建你所设置的名字的文件
- * 
- * node example4.js update
- * 执行了update.js文件
- * 
- * 执行 node node example4.js install
- * 打印 action {} install
- * /
+/*
+  我们执行 node example4.js create
+  会去找和example4.js同级的example4-create.js，然后运行example4-create.js
+  如果不想让它执行example4-create.js，可以自己指定一个文件，在command()第三个参数传入 { executableFile: '你想要的名字' }，别忘记创建你所设置的名字的文件
+  
+  node example4.js update
+  执行了update.js文件
+  
+  执行 node node example4.js install
+  打印 action {} install
+
+*/
 ```
 
 ### 子命令支持嵌套
