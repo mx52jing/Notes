@@ -128,7 +128,7 @@ console.log(opts);
   { port: 8000, optional: 'optional', many: [ '1', '2', '3' ] }
   node example2.js -m 1 2 -t 3
   { port: 8000, optional: 'optional', many: [ '1', '2' ], tree: [ '3' ] }
- * /
+ */
 ```
 
 3. 取反选项
@@ -143,7 +143,7 @@ console.log(opts);
   0.0.1
   node example2.js --version
   0.0.1
- * /
+ */
 ```
 
 5. addOption
@@ -168,7 +168,7 @@ Option类，接受两个参数`(flags, description)`,`flags`和`description`对�
  /*
    node example2.js
    { port: 8000, optional: 'optional', choose: '1' }
-  * /
+  */
 ```
 
 6. 自定义选项处理
