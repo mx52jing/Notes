@@ -252,7 +252,7 @@ program
   11 { port: '9090' } action
   node example3.js action 11 -p 8000 -d
   11 { port: '8000', debug: true } action
- * /
+ */
 ```
 
 ### 独立可执行子命令
