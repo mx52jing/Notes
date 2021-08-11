@@ -1,0 +1,15 @@
+{
+  "name": "npm-about",
+  "version": "1.5.3",
+  "description": "",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "16.13.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
