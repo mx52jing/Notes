@@ -5,9 +5,17 @@ npm init -y
 yarn init -y
 ```
 
+## 初始化带有作用域的包
+
+🌰：`@babel/core`
+
+```bash
+yarn/npm init --scop=xxx
+```
 ## 下载
 
 全局安装，在命令行随处使用该命令
+
 ```bash
 npm i xxx -g
 yarn add xxx -g
@@ -17,7 +25,10 @@ yarn add xxx -g
 链接到全局node_modules
 
 ```bash
-yarn link
+yarn link/npm link
+
+# 取消链接
+yarn unlink/npm unlink
 ```
 
 ## 在项目在安装
