@@ -51,3 +51,46 @@ git log --graph
 # 查看所有分支
 git log --all
 ```
+
+### 查看某个id的类型
+
+类型可能为`commit`/`tag`/`tree`/`blob`
+
+```bash
+git cat-file -t id
+```
+### 查看某个提交id的内容
+
+```bash
+git cat-file -p id
+```
+
+## `.git`目录
+
+### `HEAD`文件
+
+指向目前的分支名称，下面代表当前在`master`分支上
+
+```bash
+cat HEAD
+ref: refs/heads/master
+```
+
+### `config`文件
+
+`config`文件存放的是`本地仓库`的相关配置信息，可通过`git config --list --local`查看，或者通过`git config --lcoal user.name xxx`来设置本仓库一些信息
+
+### refs文件夹
+
+`refs/heads`展示了该仓库下的所有分支
+`refs/tags`展示了该仓库下的所有tag
+
+### `commit`、`tree`、`blob`关系
+
+每一个`commit`对应一颗`tree`，每棵`tree`里面有可能会包含多个`blob`文件，也有可能包含另一颗`tree`
+
+## 图形化界面查看提交信息
+
+```bash
+gitk --all
+```
