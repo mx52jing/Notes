@@ -1,0 +1,35 @@
+.home {
+  width: 200px;
+  height: 300px;
+  display: flex;
+}
+@media screen and (max-width: 768px) {
+  .home {
+    width: 300px;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .home {
+    width: 500px;
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .home {
+    width: 800px;
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1920px) {
+  .home {
+    width: 1000px;
+    font-size: 24px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .home {
+    width: 100vw;
+    font-size: 26px;
+  }
+}
