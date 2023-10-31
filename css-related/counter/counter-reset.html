@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>counter-reset</title>
+    <style>
+        .counter-box {
+            counter-reset: box-count 2.1;
+        }
+        .counter-box::after {
+            content: counter(box-count);
+        }
+        .multiple-counter__target {
+            counter-reset: count-one count-two 10;
+        }
+        .multiple-counter__target::before {
+            content: counter(count-one);
+        }
+        .multiple-counter__target::after {
+            content: counter(count-two);
+        }
+    </style>
+</head>
+<body>
+<div class="home-wrap">
+    <div class="single-counter">
+        <div>Start</div>
+        <div class="counter-box"></div>
+        <div>End</div>
+    </div>
+    <hr>
+    <div class="multiple-counter">
+        <div>Start</div>
+        <div class="multiple-counter__target"></div>
+        <div>End</div>
+    </div>
+</div>
+</body>
+</html>

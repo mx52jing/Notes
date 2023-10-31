@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>counter-increment</title>
+    <style>
+        /*auto-increment*/
+        .auto-increment__target {
+            counter-reset: auto-increment;
+            counter-increment: auto-increment;
+        }
+        .auto-increment__target::before {
+            content: counter(auto-increment);
+            counter-increment: auto-increment;
+        }
+        /*count_two*/
+        .count_two {
+            counter-reset: count-two 2;
+        }
+        .count_two::before {
+            content: counter(count-two);
+            counter-increment: count-two;
+        }
+        .count_two::after {
+            content: counter(count-two);
+            counter-increment: count-two;
+        }
+        /*使用increment增加计数器*/
+        .wrap-count {
+            counter-reset: wrap-count;
+        }
+        .paint-item,
+        .paint-content--increment {
+            counter-increment: wrap-count;
+        }
+        .paint-item::before,
+        .paint-content--increment::before {
+            content: counter(wrap-count);
+        }
+        .paint-content--no-increment::before {
+            content: counter(wrap-count);
+        }
+        .paint-inner {
+            padding-left: 30px;
+        }
+        /*counter 函数 */
+        .counter-fn {
+            counter-reset: count-fn;
+        }
+        .counter-fn__item {
+            counter-increment: count-fn;
+        }
+        .counter-fn__item::before {
+            content: counter(count-fn, decimal) '）';
+        }
+        /*counters 函数 */
+        .counters-reset {
+            padding-left: 20px;
+            counter-reset: counters-change;
+        }
+        .counters-increment {
+            counter-increment: counters-change;
+        }
+        .counters-increment::before {
+            content: counters(counters-change, '-', decimal) '. ';
+        }
+    </style>
+</head>
+<body>
+<div class="root">
+    <div class="auto-increment">
+        <div>Start</div>
+        <div class="auto-increment__target">
+        </div>
+        <div>End</div>
+    </div>
+    <hr>
+    <div>
+        <div>Start</div>
+        <div class="count_two"></div>
+        <div>End</div>
+    </div>
+    <hr>
+    <div class="paint wrap-count">
+        <div class="paint-item">
+            使用increment增加计数器
+            <p class="paint-inner paint-content--increment">使用increment增加计数器</p>
+            <p class="paint-inner paint-content--increment">使用increment增加计数器</p>
+        </div>
+        <div class="paint-item">
+            使用increment增加计数器
+            <p class="paint-inner paint-content--no-increment">不使用increment增加</p>
+            <p class="paint-inner paint-content--no-increment">不使用increment增加</p>
+        </div>
+    </div>
+    <hr>
+    <div class="counter-fn">
+        <p class="counter-fn__item">counter函数的演示</p>
+        <p class="counter-fn__item">counter函数的演示</p>
+        <p class="counter-fn__item">counter函数的演示</p>
+        <p class="counter-fn__item">counter函数的演示</p>
+    </div>
+    <hr>
+    <div class="counters-reset">
+        <div class="counters-increment">counters-parent</div>
+        <div class="counters-reset">
+            <div class="counters-increment">counters-children</div>
+            <div class="counters-increment">counters-children</div>
+            <div class="counters-reset">
+                <div class="counters-increment">counters-children</div>
+                <div class="counters-increment">counters-children</div>
+            </div>
+        </div>
+        <div class="counters-reset">
+            <div class="counters-increment">counters-children</div>
+            <div class="counters-increment">counters-children</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
