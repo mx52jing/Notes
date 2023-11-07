@@ -1,0 +1,62 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+// 定义一个尺寸对应的宽度map
+$layouts: (
+ 'xs': (null, 768px),
+ 'sm': (768px, 992px),
+ 'md': (992px, 1200px),
+ 'lg': (1200px, 1920px),
+ 'xl': (1920px, null),
+);
+
+@mixin respond-to($breakpoint: 'md') {
+  // 从一个键值对取值 $sizeList 是一个数组
+  $sizeList: map.get($layouts, $breakpoint);
+  // 取出 数组 的第一项 和 第二项
+  $min: list.nth($sizeList, 1);
+  $max: list.nth($sizeList, 2);
+  // 最小值为null 表示是 xs
+  @if meta.type-of($min) == 'null' {
+    @media screen and (max-width: $max){
+      @content;
+    }
+  }
+  // 最大值是 null 表示是最大尺寸 xl
+  @else if meta.type-of($max) == 'null' {
+    @media screen and (min-width: $min){
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $min) and (max-width: $max){
+      @content;
+    }
+  }
+}
+
+.home {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  @include respond-to('xs') {
+    width: 300px;
+    font-size: 14px;
+  };
+  @include respond-to('sm') {
+    width: 500px;
+    font-size: 16px;
+  };
+  @include respond-to('md') {
+    width: 800px;
+    font-size: 18px;
+  };
+  @include respond-to('lg') {
+    width: 1000px;
+    font-size: 24px;
+  };
+  @include respond-to('xl') {
+    width: 100vw;
+    font-size: 26px;
+  };
+}

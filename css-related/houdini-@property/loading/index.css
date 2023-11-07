@@ -1,0 +1,18 @@
+@property --percentage {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 0;
+}
+
+.loading-number {
+}
+
+.loading-number::before {
+    --percentage: 0;
+    counter-reset: loading-progress var(--percentage);
+    content: counter(loading-progress) '% ';
+}
+.loading-number.finished::before {
+    --percentage: 99;
+    transition: 10s --percentage cubic-bezier(.08,.81,.29,.99);;
+}

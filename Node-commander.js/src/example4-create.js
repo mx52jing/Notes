@@ -1,0 +1,1 @@
+console.log('example4-create.js console');

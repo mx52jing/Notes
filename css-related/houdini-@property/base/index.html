@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <div>
+        <h1>小试@property</h1>
+        剩余时间
+        <span class="percentage-count"></span>
+        <br>
+        <button class="count-down">开始倒计时</button>
+    </div>
+    <hr>
+</div>
+<script>
+    const countDownBtn = document.querySelector('.count-down');
+    const percentageEl = document.querySelector('.percentage-count')
+    countDownBtn.addEventListener('click', () => {
+        percentageEl.classList.remove('active');
+        percentageEl.offsetHeight; // 加这一行代码可以让倒计时结束后，再次点击按钮重新进行倒计时
+        percentageEl.classList.add('active');
+    });
+</script>
+</body>
+</html>
