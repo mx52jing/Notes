@@ -1,0 +1,17 @@
+name: Deploy gh-pages
+on:
+  push:
+    branches:
+      - main
+      - master
+permissions:
+  contents: write
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .

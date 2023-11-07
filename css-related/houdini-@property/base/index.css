@@ -1,0 +1,17 @@
+@property --percentage {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 30;
+}
+.percentage-count {
+    color: #ff5051;
+}
+.percentage-count::before {
+    --percentage: 30;
+    counter-reset: count-down var(--percentage);
+    content: counter(count-down) 's ';
+}
+.percentage-count.active::before {
+    --percentage: 0;
+    transition: 30s --percentage linear;
+}

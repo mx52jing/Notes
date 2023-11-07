@@ -1,3 +1,6 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
 // 定义一个尺寸对应的宽度map
 $layouts: (
  'xs': (null, 768px),
@@ -9,18 +12,18 @@ $layouts: (
 
 @mixin respond-to($breakpoint: 'md') {
   // 从一个键值对取值 $sizeList 是一个数组
-  $sizeList: map-get($layouts, $breakpoint);
+  $sizeList: map.get($layouts, $breakpoint);
   // 取出 数组 的第一项 和 第二项
-  $min: nth($sizeList, 1);
-  $max: nth($sizeList, 2);
+  $min: list.nth($sizeList, 1);
+  $max: list.nth($sizeList, 2);
   // 最小值为null 表示是 xs
-  @if type-of($min) == 'null' {
+  @if meta.type-of($min) == 'null' {
     @media screen and (max-width: $max){
       @content;
     }
   }
   // 最大值是 null 表示是最大尺寸 xl
-  @else if type-of($max) == 'null' {
+  @else if meta.type-of($max) == 'null' {
     @media screen and (min-width: $min){
       @content;
     }

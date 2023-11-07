@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="root">
+    <div class="loading-text">加载中...<span class="loading-number"></span></div>
+    <div>
+        <button class="btn-loading--start">开始loading</button>
+    </div>
+</div>
+<script>
+    const startLoadingBtn = document.querySelector('.btn-loading--start')
+    const loadingNumberEl = document.querySelector('.loading-number')
+    startLoadingBtn.addEventListener('click', () => {
+        loadingNumberEl.classList.remove('finished')
+        loadingNumberEl.offsetHeight
+        loadingNumberEl.classList.add('finished')
+    })
+    // 过渡结束后 会执行该方法，借助该方法可以模拟长按动作
+    loadingNumberEl.addEventListener('transitionend', () => {
+        console.log('transitionend')
+    })
+</script>
+</body>
+</html>

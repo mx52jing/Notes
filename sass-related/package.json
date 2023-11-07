@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "sass --watch --no-source-map mixin-optimize-style",
+    "compile": "sass --watch --no-source-map starry-sky",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
