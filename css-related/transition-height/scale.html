@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>通过scale实现</title>
+    <style>
+        .parent {
+            transform: scaleY(0);
+            transform-origin: top center;
+            transition: .5s linear;
+        }
+        .btn:hover + .parent {
+            transform: scaleY(1);
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+   <h1>元素高度过渡效果(通过scale实现)</h1>
+    <button class="btn">hover me</button>
+    <div class="parent">
+        <div class="inner">
+            三十六计的顺序是：
+            第1套胜战计，瞒天过海、 围魏救赵、借刀杀人、以逸待劳、趁火打劫、声东击西。
+
+            第2套敌战计，无中生有、暗渡陈仓、隔岸观火、笑里藏刀、李代桃僵、顺手牵羊。
+
+            第3套攻战计，打草惊蛇、借尸还魂、调虎离山、欲擒故纵、抛砖引玉、擒贼擒王。
+
+            第4套混战计，釜底抽薪、混水摸鱼、金蝉脱壳、关门捉贼、远交近攻、假道伐虢、
+
+            第5套并战计，偷梁换柱、指桑骂槐、假痴不颠、上楼抽梯、虚张声势、反客为主。
+
+            第6套败战计，美人计、空城计、反间计、苦肉计、连环计、走为上策。
+        </div>
+    </div>
+    <div>Footer</div>
+</div>
+</body>
+</html>
