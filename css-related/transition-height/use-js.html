@@ -47,7 +47,7 @@
         // 先将高度设置为数字0  为了让过渡生效
         parentEl.style.cssText += `height: 0`;
         // 这行一定要加 需要让页面进行重绘
-        // parentEl.offsetHeight;
+        parentEl.offsetHeight;
         parentEl.style.cssText += `height: ${height}px`;
     });
     btn.addEventListener('mouseleave', () => {
