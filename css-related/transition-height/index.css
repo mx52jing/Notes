@@ -1,0 +1,26 @@
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.btn {
+    color: #FFFFFF;
+    font-size: 16px;
+    background: #3C5CD9;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    margin-bottom: 20px;
+}
+.parent {
+    width: 500px;
+}
+.inner {
+    border-radius: 8px;
+    background: #3C5CD9;
+    color: #FFFFFF;
+    padding: 20px;
+}
