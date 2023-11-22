@@ -1,6 +1,9 @@
 @use 'sass:math';
 @use 'sass:string';
-
+html, body {
+  margin: 0;
+  padding: 0;
+}
 // 定义小星星的box-shadow样式 $n 是需要生成多少个box-shadow
 @function generateShadows($n: 100) {
   // 定义box-shadow
