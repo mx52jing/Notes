@@ -1,0 +1,43 @@
+@use "sass:math";
+$ballCount: 36; // 小球数量
+$averageAngle: calc(360 / $ballCount); // 每个球占用的角度
+$ballBoxSize: 300px;
+$ballSize: 16px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-color: #66c7f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ball-wrap {
+  width: $ballBoxSize;
+  height: $ballBoxSize;
+  border-radius: 50%;
+  outline: 1px solid #FFFFFF;
+  position: relative;
+  .ball-target {
+    position: absolute;
+    background-color: red;
+    width: $ballSize;
+    height: $ballSize;
+    border-radius: 50%;
+  }
+  @for $i from 1 through $ballCount {
+    $r: math.div($ballBoxSize, 2);
+    $x: math.sin(math.div((($i - 1) * $averageAngle) * math.$pi, 180)) * $r;
+    $y: math.cos(math.div((($i - 1) * $averageAngle) * math.$pi, 180)) * $r;
+    $pos: calc($ballBoxSize / 2) - calc($ballSize / 2);
+    .ball-target:nth-of-type(#{$i}) {
+      top: $pos;
+      left: $pos;
+      transform: translate3d($x, -$y, 0);
+    }
+  }
+}

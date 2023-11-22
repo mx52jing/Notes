@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>CSS实现类似微信头像效果</title>
+</head>
+<body>
+<div id="app">
+    <div class="avatar-box">
+        <img class="avatar-img" src="./img/dog.webp" alt="">
+    </div>
+    <button id="btn-add">添加新人</button>
+</div>
+<script>
+    const avatarBox = document.querySelector('.avatar-box')
+    const btn = document.querySelector('#btn-add')
+    btn.addEventListener('click', () => {
+       if(avatarBox.childElementCount >= 9) return;
+        const img = new Image()
+        img.src = "./img/dog.webp"
+        img.classList.add('avatar-img')
+        avatarBox.insertAdjacentElement('beforeend', img);
+    })
+</script>
+</body>
+</html>

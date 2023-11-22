@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "sass --watch --no-source-map starry-sky",
+    "compile": "sass --watch --no-source-map .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
