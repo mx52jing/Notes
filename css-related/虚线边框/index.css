@@ -1,0 +1,8 @@
+.dashed-border {
+    margin: 50px auto 0;
+    width: 600px;
+    height: 150px;
+    padding: 10px;
+    border: 1px dashed transparent;
+    background: linear-gradient(white,white) padding-box, repeating-linear-gradient(-45deg,#ccc 0, #ccc 0.25em,white 0,white 0.75em);
+}
