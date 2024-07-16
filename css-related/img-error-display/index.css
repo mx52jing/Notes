@@ -1,0 +1,38 @@
+.img-error--handle {
+    margin: 100px auto 0;
+    display: flex;
+    justify-content: center;
+}
+.img-target {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: block;
+}
+.img-target::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: transparent;
+    background: #F5F5F5 url("./image/image-error.webp") no-repeat center / 50% 50%;
+}
+.img-target::after {
+    content: attr(alt);
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    left: 0;
+    bottom: 0;
+    line-height: 2;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
