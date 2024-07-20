@@ -17,7 +17,7 @@
     top: 0;
     left: 0;
     color: transparent;
-    background: #F5F5F5 url("./image/image-error.webp") no-repeat center / 50% 50%;
+    background: #F5F5F5 url("https://raw.githubusercontent.com/mx52jing/image-hosting/main/images/css-related/image-error.webp") no-repeat center / 50% 50%;
 }
 .img-target::after {
     content: attr(alt);
