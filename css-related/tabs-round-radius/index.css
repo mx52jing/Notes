@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+#app {
+    width: 100vw;
+    height: 100vh;
+    background-color: #F7F8F9;
+    padding-top: 100px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.tabs-box {
+    --text-primary-color: #EF4034;
+    --bg-primary-color: #E08638;
+    --h: 50px;
+    --base-radius: 12px;
+    width: 380px;
+    height: var(--h);
+    display: flex;
+    background-color: var(--bg-primary-color);
+    border-radius: var(--base-radius) var(--base-radius) 0 0;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+.tabs-item {
+    flex: 1;
+    height: var(--h);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.tabs-item--selected {
+    color: var(--text-primary-color);
+    background-color: #FFFFFF;
+    /*添加上面两个圆角*/
+    border-radius: var(--base-radius) var(--base-radius) 0 0;
+    /*添加box-shadow*/
+    box-shadow: var(--base-radius) var(--base-radius) 0 0 #FFFFFF, calc(-1 * var(--base-radius)) var(--base-radius) 0 0 #FFFFFF;
+}
+
+.tabs-item--selected::before,
+.tabs-item--selected::after {
+    content: "";
+    width: var(--base-radius);
+    height: var(--h);
+    position: absolute;
+    top: 0;
+    background-color: var(--bg-primary-color);
+}
+
+.tabs-item--selected::before {
+    left: calc(-1 * var(--base-radius));
+    border-radius: 0 0 var(--base-radius) 0;
+}
+
+.tabs-item--selected::after {
+    right: calc(-1 * var(--base-radius));
+    border-radius: 0 0 0 var(--base-radius);
+}
